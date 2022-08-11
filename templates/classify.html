@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Intelligence source Credibility Scoring</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <!-- <a class="navbar-brand" href="#">Github Profile Images</a> -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="new">News List
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="label">Label
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="classify">Classification</a>
+            <span class="sr-only">(current)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+<div style="text-align:center">
+  <style>
+    h3{
+      padding-bottom: 10px;
+      color: green;
+    }
+  </style>
+  <h2>Classification Result</h2>
+  {% for message in messages %}
+  <h3>{{message}}</h3>
+  {% endfor %}
+</div>
+
+<!-- The four columns -->
+<div style="padding-left: 50px;">
+  <div>
+    <style>
+      #but{
+        margin: 5px 5px;
+        padding: 5px 5px;
+        align-self: flex-start;
+      }
+    </style>
+    <a id="but" type="button" class="btn btn-primary" href="reset">Reset</a>
+  </div>
+
+  <div style="padding-right:50px ;">
+    <h4>Result of K-Means Clustering</h4>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>id</th>
+          <th>title</th>
+          <th>TC</th>
+          <th>MC</th>
+          <th>GR</th>
+          <th>Label</th>
+          <th>Cluster</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for new,cl in mylist %}
+        <tr>
+          <td>{{new.id}}</td>
+          <td>{{new.nTitle}}</td>
+          <td>{{new.tc}}</td>
+          <td>{{new.mc}}</td>
+          <td>{{new.gr}}</td>
+          <td>{{new.l}}</td>
+          <td>{{cl}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      
+      
+    
+    </table>
+    <!-- <div class="column">
+      <img src="{{image.imagelink}}" alt="Nature" style="width:100%" onclick="myFunction(this);">
+      <p>{{image.githubuser}}</p>
+    </div> -->
+    <div style="padding-right:50px ;">
+      <h4>SVM Testing Result</h4>
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>TC</th>
+            <th>MC</th>
+            <th>GR</th>
+            <th>Target</th>
+            <th>Predicted</th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for test,c in testing %}
+          <tr>
+            <td>{{test.tc}}</td>
+            <td>{{test.mc}}</td>
+            <td>{{test.gr}}</td>
+            <td>{{c.RealValues}}</td>
+            <td>{{c.PredictedValues}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        
+        
+      
+      </table> 
+  </div>
+<div style="padding-left: 100px;">
+  <p style="font-weight: bold;">Classification Result:
+      <ul>
+          <li>Accuracy Score: {{acc}}</li>
+          <li>Precision value: {{prec}}</li>
+          <li>Recall: {{recl}}</li>
+         
+      </ul>
+  </p>
+</div>
+</div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.slim.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
